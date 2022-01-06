@@ -4,20 +4,22 @@ import shutil
 import os
 
 
-def make_testset(path='/data/js_detection/dataset_copy'):
+def make_testset(name = 'test', path=None):
     
-    sample_rate = 0.2
+    sample_rate = 0.1
     
     neg_path = os.path.join(path,'neg')
     pos_path = os.path.join(path,'pos')
 
-    neg_test_path = os.path.join(path,'neg_test')
-    pos_test_path = os.path.join(path,'pos_test')
+    neg_test_path = os.path.join(path,'neg_'+name)
+    pos_test_path = os.path.join(path,'pos_'+name)
 
     if not os.path.isdir(neg_test_path):
+        print('no neg dir')
         os.mkdir(neg_test_path)
     
     if not os.path.isdir(pos_test_path):
+        print('no pos dir')
         os.mkdir(pos_test_path)
     
     neg_list = glob.glob(neg_path + '/*.png')
@@ -41,4 +43,7 @@ def make_testset(path='/data/js_detection/dataset_copy'):
     
 
 if __name__ == '__main__':
-    make_testset()
+
+    name = 'val'
+    path = '/media/jaeseok/3F193D906CC86E6A/researches/js_detection/dataset'
+    make_testset(name = name, path = path)
